@@ -1,6 +1,5 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class LibroTest {
@@ -45,7 +44,6 @@ class LibroTest {
         assertTrue(libro.estaDisponible());
     }
 
-    @Disabled("Activar en la actividad de corrección")
     @Test
     void deberiaCompararTitulosPorContenido() {
         Libro libro = new Libro("1984", "George Orwell");
@@ -53,5 +51,19 @@ class LibroTest {
         String otroTitulo = new String("1984");
 
         assertTrue(libro.esMismoTitulo(otroTitulo));
+    }
+
+    @Test
+    void deberiaRetornarFalseCuandoTitulosSonDiferentes() {
+        Libro libro = new Libro("1984", "George Orwell");
+
+        assertFalse(libro.esMismoTitulo("Rebelión en la granja"));
+    }
+
+    @Test
+    void deberiaRetornarFalseCuandoOtroTituloEsNull() {
+        Libro libro = new Libro("1984", "George Orwell");
+
+        assertFalse(libro.esMismoTitulo(null));
     }
 }
